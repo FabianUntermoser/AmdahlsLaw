@@ -15,8 +15,17 @@
     </dependencies>
     <build>
         <finalName>AmdahlsLaw</finalName>
+        <plugins>
+            <plugin>
+                <!--Deploy Artifact with: mvn package wildfly:deploy -->
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>1.2.1.Final</version>
+            </plugin>
+        </plugins>
     </build>
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <failOnMissingWebXml>false</failOnMissingWebXml>
