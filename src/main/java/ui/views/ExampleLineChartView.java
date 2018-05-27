@@ -1,6 +1,9 @@
 package ui.views;
 
-import org.primefaces.model.chart.*;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.LineChartModel;
+import org.primefaces.model.chart.LineChartSeries;
 
 public class ExampleLineChartView {
 
