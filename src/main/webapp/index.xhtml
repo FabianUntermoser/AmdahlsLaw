@@ -3,8 +3,14 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+<h:head>
+    <title>Amdahls Law</title>
+    <meta charset="UTF-8"/>
+</h:head>
+<h:body>
+    <h:outputLabel value="Example Line Chart"/>
+    <p:chart type="line" model="#{indexController.lineChart}" style="height: 300px;"/>
+</h:body>
 </html>
