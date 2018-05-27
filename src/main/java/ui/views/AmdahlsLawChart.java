@@ -46,6 +46,7 @@ public class AmdahlsLawChart {
         LineChartSeries series = new LineChartSeries();
         series.setLabel(name);
         speedupMap.forEach(series::set);
+        lineChart.addSeries(series);
     }
 
 }

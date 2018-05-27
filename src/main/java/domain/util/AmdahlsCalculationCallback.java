@@ -1,7 +1,10 @@
 package domain.util;
 
-import org.primefaces.model.chart.LineChartSeries;
+import java.util.Map;
 
 public interface AmdahlsCalculationCallback {
-    void onCalculationFinished(LineChartSeries series);
+    void onCalculationFinished(
+            String name,
+            Map<Integer, Double> speedupMap
+    );
 }

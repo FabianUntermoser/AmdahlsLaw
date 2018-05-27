@@ -1,8 +1,8 @@
 package domain.services;
 
+import data.repositories.ChartRepository;
 import domain.util.AmdahlsCalculation;
 import domain.util.AmdahlsCalculationCallback;
-import org.primefaces.model.chart.LineChartSeries;
 import ui.views.AmdahlsLawChart;
 import ui.views.ExampleLineChartView;
 
@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.enterprise.concurrent.ManagedExecutorService;
+import java.util.Map;
 
 @Stateless
 public class ChartServiceBean implements IChartService, AmdahlsCalculationCallback {
@@ -28,11 +29,15 @@ public class ChartServiceBean implements IChartService, AmdahlsCalculationCallba
     @PostConstruct
     public void init() {
         exampleChart = new ExampleLineChartView();
-        amdahlsLawChart = new AmdahlsLawChart(MAX_PROCESSORS);
-
-        setupConcurrentAmdahlsLawCalculation("Series 1", parallizableAmount1);
-        setupConcurrentAmdahlsLawCalculation("Series 2", parallizableAmount2);
-        setupConcurrentAmdahlsLawCalculation("Series 3", parallizableAmount3);
+        if (ChartRepository.getAmdahlsLawChart() == null) {
+            amdahlsLawChart = new AmdahlsLawChart(MAX_PROCESSORS);
+            ChartRepository.setAmdahlsLawChart(amdahlsLawChart);
+            setupConcurrentAmdahlsLawCalculation("Series 1", parallizableAmount1);
+            setupConcurrentAmdahlsLawCalculation("Series 2", parallizableAmount2);
+            setupConcurrentAmdahlsLawCalculation("Series 3", parallizableAmount3);
+        } else {
+            amdahlsLawChart = ChartRepository.getAmdahlsLawChart();
+        }
     }
 
     @Override
@@ -55,7 +60,7 @@ public class ChartServiceBean implements IChartService, AmdahlsCalculationCallba
     }
 
     @Override
-    public void onCalculationFinished(LineChartSeries series) {
-        this.amdahlsLawChart.getLineChart().addSeries(series);
+    public void onCalculationFinished(String name, Map<Integer, Double> speedupMap) {
+        amdahlsLawChart.addChartSeries(name, speedupMap);
     }
 }
