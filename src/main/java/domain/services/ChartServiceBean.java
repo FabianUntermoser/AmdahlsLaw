@@ -18,8 +18,8 @@ import java.util.Map;
 public class ChartServiceBean implements IChartService, AmdahlsCalculationCallback {
 
     private static final int MAX_PROCESSORS = 1024;
-    private static final double parallizableAmount1 = 1 - 0.3;
-    private static final double parallizableAmount2 = 1 - 0.5;
+    private static final double parallizableAmount1 = 1 - 0.5;
+    private static final double parallizableAmount2 = 1 - 0.7;
     private static final double parallizableAmount3 = 1 - 0.95;
 
     @Resource
