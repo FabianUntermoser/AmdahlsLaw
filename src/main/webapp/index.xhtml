@@ -16,7 +16,9 @@
     <h:outputText value="Amdahls Law"/>
     <br/>
     <h:outputText value="Processes: #{indexController.amdahlsLawChart.maxProcessors}"/>
-    <p:chart type="line" model="#{indexController.amdahlsLawChart.lineChart}" style="height: 300px;" responsive="true"/>
+    <p:chart type="line" model="#{indexController.amdahlsLawChart.lineChart}"
+             style="height: 300px;" responsive="true" widgetVar="chart"/>
+    <p:commandButton type="button" value="Reset" icon="ui-icon-cancel" onclick="PF('chart').resetZoom()"/>
 
 </h:body>
 </html>

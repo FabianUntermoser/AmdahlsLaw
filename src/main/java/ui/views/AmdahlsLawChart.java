@@ -30,6 +30,7 @@ public class AmdahlsLawChart {
     private void createLineModel() {
         lineChart = initLinearModel();
         lineChart.setTitle("Amdahls Law");
+        lineChart.setZoom(true);
         lineChart.setLegendPosition("e");
         Axis yAxis = lineChart.getAxis(AxisType.Y);
         yAxis.setLabel("Speedup");
