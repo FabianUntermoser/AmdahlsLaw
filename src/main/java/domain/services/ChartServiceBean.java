@@ -10,6 +10,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.enterprise.concurrent.ManagedExecutorService;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import java.util.Map;
 
 @Stateless
@@ -22,6 +24,9 @@ public class ChartServiceBean implements IChartService, AmdahlsCalculationCallba
 
     @Resource
     private ManagedExecutorService executorService;
+
+    @Inject
+    private Event<Boolean> chartUpdateEvent;
 
     private ExampleLineChartView exampleChart;
     private AmdahlsLawChart amdahlsLawChart;
@@ -62,5 +67,7 @@ public class ChartServiceBean implements IChartService, AmdahlsCalculationCallba
     @Override
     public void onCalculationFinished(String name, Map<Integer, Double> speedupMap) {
         amdahlsLawChart.addChartSeries(name, speedupMap);
+        chartUpdateEvent.fire(true);
     }
+
 }

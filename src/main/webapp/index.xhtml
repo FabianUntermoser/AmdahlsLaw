@@ -9,15 +9,37 @@
     <meta charset="UTF-8"/>
 </h:head>
 <h:body>
+    <h:form>
+        <p:remoteCommand name="updateChart" update="chart" />
+    </h:form>
+
     <!--<h:outputLabel value="Example Line Chart"/>-->
     <!--<p:chart type="line" model="#{indexController.lineChart.lineChart}" style="height: 300px;"/>-->
-
     <h:outputText value="Amdahls Law"/>
     <br/>
     <h:outputText value="Processes: #{indexController.maxProcessors}"/>
-    <p:chart type="line" model="#{indexController.amdahlsLawChart.lineChart}"
+    <p:chart id="chart" type="line" model="#{indexController.amdahlsLawChart.lineChart}"
              style="height: 300px;" responsive="true" widgetVar="chart"/>
     <p:commandButton type="button" value="Reset" icon="ui-icon-cancel" onclick="PF('chart').resetZoom()"/>
+
+    <script type="text/javascript">
+        var websocket = new WebSocket("ws://" + document.location.host + "/AmdahlsLaw/chart");
+        websocket.onopen = function (event) {
+            console.log("websocket: onopen");
+        };
+        websocket.onclose = function (event) {
+            console.log("websocket: onclose");
+        };
+        websocket.onmessage = function (event) {
+            console.log("websocket: onmessage");
+            if (event.data.localeCompare('updateChar')) {
+                updateChart();
+            }
+        };
+        websocket.onerror = function (event) {
+            console.log("websocket: onerror");
+        };
+    </script>
 
 </h:body>
 </html>
