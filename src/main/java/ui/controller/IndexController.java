@@ -1,6 +1,6 @@
 package ui.controller;
 
-import org.primefaces.model.chart.LineChartModel;
+import ui.views.AmdahlsLawChart;
 import ui.views.ExampleLineChartView;
 
 import javax.faces.view.ViewScoped;
@@ -12,17 +12,26 @@ import java.io.Serializable;
 public class IndexController implements Serializable {
 
     private ExampleLineChartView lineChart;
+    private AmdahlsLawChart amdahlsLawChart;
 
     public IndexController() {
         lineChart = new ExampleLineChartView();
+        amdahlsLawChart = new AmdahlsLawChart();
     }
 
-    public LineChartModel getLineChart() {
-        return lineChart.getLineChart();
+    public ExampleLineChartView getLineChart() {
+        return lineChart;
     }
 
-    public void setLineChart(LineChartModel lineChart) {
-        this.lineChart.setLineChart(lineChart);
+    public void setLineChart(ExampleLineChartView lineChart) {
+        this.lineChart = lineChart;
     }
 
+    public AmdahlsLawChart getAmdahlsLawChart() {
+        return amdahlsLawChart;
+    }
+
+    public void setAmdahlsLawChart(AmdahlsLawChart amdahlsLawChart) {
+        this.amdahlsLawChart = amdahlsLawChart;
+    }
 }

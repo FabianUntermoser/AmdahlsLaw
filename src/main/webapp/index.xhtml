@@ -10,7 +10,13 @@
     <meta charset="UTF-8"/>
 </h:head>
 <h:body>
-    <h:outputLabel value="Example Line Chart"/>
-    <p:chart type="line" model="#{indexController.lineChart}" style="height: 300px;"/>
+    <!--<h:outputLabel value="Example Line Chart"/>-->
+    <!--<p:chart type="line" model="#{indexController.lineChart.lineChart}" style="height: 300px;"/>-->
+
+    <h:outputText value="Amdahls Law"/>
+    <br/>
+    <h:outputText value="Processes: #{indexController.amdahlsLawChart.maxProcessors}"/>
+    <p:chart type="line" model="#{indexController.amdahlsLawChart.lineChart}" style="height: 300px;" />
+
 </h:body>
 </html>
