@@ -21,7 +21,7 @@ public class AmdahlsCalculation implements Runnable {
 
     @Override
     public void run() {
-        for (int processors = 0; processors < maxProcessors*10; processors++) {
+        for (int processors = 0; processors < maxProcessors; processors++) {
             speedupMap.put(processors, calcAmdahlsLaw(parallizableAmount, processors));
         }
         callback.onCalculationFinished(seriesName, speedupMap);
