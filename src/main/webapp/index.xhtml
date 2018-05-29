@@ -32,7 +32,7 @@
         };
         websocket.onmessage = function (event) {
             console.log("websocket: onmessage");
-            if (event.data.localeCompare('updateChar')) {
+            if (event.data === "updateChar") {
                 updateChart();
             }
         };
